@@ -8,32 +8,33 @@
 using namespace std;
 
 int main() {
-  int k, m, step2; 
-  double g, v, t, step1;
-  g = 9.81;
+  double grav, speed, t, mass, dragCoefficient, step1, step2, tMax1, tMax2;
+  grav = 9.81;
   t = 0;
+  tMax1 = 1.0;
+  tMax2 = 5.0;
   step1 = 0.25;
-  step2 = 1;
+  step2 = 1.0;
   
-  cout << "m=";
-  cin >> m;
-  cout << "k=";
-  cin >> k;
+  cout << "Mass=";
+  cin >> mass;
+  cout << "Drag coefficient=";
+  cin >> dragCoefficient;
   
-  while (t < 1) {
-    v = sqrt(g * m / k) * tanh ( t * sqrt(g * k / m) );
+  while (t < tMax1) {
+    speed = sqrt(grav * mass / dragCoefficient) * tanh ( t * sqrt(grav * dragCoefficient / mass));
     t = t + step1;
     
-    cout << t << endl
-         << v << endl;
+    cout << "Время:" << t << endl
+         << "Скорость:" << speed << endl;
   }
   
   do {
-    v = sqrt(g * m / k) * tanh ( t * sqrt(g * k / m) );
+    speed = sqrt(grav * mass / dragCoefficient) * tanh ( t * sqrt(grav * dragCoefficient / mass));
     t = t + step2;
     
-    cout << t << endl
-         << v << endl;
-  }  while (t < 5);
+    cout << "Time:" << t << endl
+         << "Speed:" << speed << endl;
+  }  while (t < tMax2);
   
 }
